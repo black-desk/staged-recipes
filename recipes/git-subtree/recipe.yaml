@@ -1,0 +1,35 @@
+context:
+  version: "2.53.0"
+
+package:
+  name: git-subtree
+  version: ${{ version }}
+
+source:
+  url: https://mirrors.edge.kernel.org/pub/software/scm/git/git-${{ version }}.tar.gz
+  sha256: 429dc0f5fe5f14109930cdbbb588c5d6ef5b8528910f0d738040744bebdc6275
+
+build:
+  number: 0
+  skip: win
+  script: build.sh
+
+requirements:
+  build:
+    - make
+  run:
+    - git
+
+about:
+  homepage: https://git-scm.com/
+  summary: Git subtree merge command
+  description: |
+    Git subtree allows subprojects to be included within a subdirectory
+    of the main project, optionally with the entire subproject history.
+  license: GPL-2.0-or-later
+  license_file: COPYING
+  repository: https://github.com/git/git/tree/master/contrib/subtree
+
+extra:
+  recipe-maintainers:
+    - black-desk
