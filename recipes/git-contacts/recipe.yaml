@@ -1,0 +1,38 @@
+context:
+  version: "2.53.0"
+
+package:
+  name: git-contacts
+  version: ${{ version }}
+
+source:
+  url: https://mirrors.edge.kernel.org/pub/software/scm/git/git-${{ version }}.tar.gz
+  sha256: 429dc0f5fe5f14109930cdbbb588c5d6ef5b8528910f0d738040744bebdc6275
+
+build:
+  number: 0
+  skip: win
+  script: build.sh
+
+requirements:
+  build:
+    - make
+  run:
+    - git
+    - perl
+
+about:
+  homepage: https://git-scm.com/
+  summary: List people who might be interested in a set of changes
+  description: |
+    Given a set of changes, specified as patch files or revisions, determine
+    people who might be interested in those changes. This is done by consulting
+    the history of each patch or revision hunk to find people mentioned by
+    commits which touched the lines of files under consideration.
+  license: GPL-2.0-or-later
+  license_file: COPYING
+  repository: https://github.com/git/git/tree/master/contrib/contacts
+
+extra:
+  recipe-maintainers:
+    - black-desk
