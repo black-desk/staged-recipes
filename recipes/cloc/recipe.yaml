@@ -1,0 +1,41 @@
+context:
+  version: "2.08"
+
+package:
+  name: cloc
+  version: ${{ version }}
+
+source:
+  url: https://github.com/AlDanial/cloc/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 8099b6275c124f662690f2db3581cd2ad4e9ad4e08332288719838ded00d1da5
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - cd Unix
+    - make -f Makefile prefix=${{ prefix }} install
+
+requirements:
+  build:
+    - make
+  run:
+    - perl >=5.10
+
+tests:
+  - script:
+      - cloc --version
+
+about:
+  homepage: https://github.com/AlDanial/cloc
+  summary: Count lines of code in source files
+  description: |
+    cloc counts blank lines, comment lines, and physical lines of source code
+    in many programming languages.
+  license: GPL-2.0-or-later
+  license_file: LICENSE
+  repository: https://github.com/AlDanial/cloc
+
+extra:
+  recipe-maintainers:
+    - black-desk
